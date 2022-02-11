@@ -9,8 +9,12 @@ class superhero:
         print(self.oneliner)
 
 class avenger(superhero):
-    pass
+    def __init__(self, name, gender, oneliner):
+        team = "Avenger"
+        superhero.__init__(self, name, gender, team, oneliner)
 
 spiderman =  superhero('Spider-Man', 'Male', 'Spiderfriends', 'With great power comes great responsibility!')
+thor = avenger('Thor', 'Male', 'For Asgard!')
 
 spiderman.sayOneliner()
+thor.sayOneliner()
