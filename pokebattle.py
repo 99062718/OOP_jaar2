@@ -1,10 +1,10 @@
 class pokemon:
-    def __init__(self, name, energyType, hitpoints, health, attacks, resistances, weaknesses):
+    def __init__(self, name, energyType, hitpoints, attacks, resistances, weaknesses):
         self.__pokeInfo = {
             "name": name,
             "energyType": energyType,
             "hitpoints": hitpoints,
-            "health": health,
+            "health": hitpoints,
             "attacks": attacks,
             "resistances": resistances,
             "weakenesses": weaknesses
@@ -40,3 +40,7 @@ class pokemon:
 
         if self.__pokeInfo["health"] <= 0:
             print("{} has fainted!".format(self.getStat("name")))
+
+pikachu = pokemon("pikachu", "lightning", 60, {"electric ring": 50, "pika punch": 20}, [["fighting"], 2], [["fire", 1.5]])
+
+charmeleon = pokemon("charmeleon", "fire", 60, {"headbutt": 10, "flare": 30}, [["lightning", 10]], [["water", 2]])
