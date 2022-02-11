@@ -8,6 +8,9 @@ class superhero:
     def sayOneliner(self):
         print(self.oneliner)
 
+class avenger(superhero):
+    pass
+
 spiderman =  superhero('Spider-Man', 'Male', 'Spiderfriends', 'With great power comes great responsibility!')
 
 spiderman.sayOneliner()
