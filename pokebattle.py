@@ -1,6 +1,8 @@
 pokemons = {}
 
 class pokemon:
+    __pokePopulation = 0
+
     def __init__(self, name, energyType, hitpoints, attacks, resistances, weaknesses):
         self.__pokeInfo = {
             "name": name,
@@ -11,6 +13,8 @@ class pokemon:
             "resistances": resistances,
             "weaknesses": weaknesses
         }
+
+        pokemon.__pokePopulation += 1
 
     def getStat(self, stat):
         return self.__pokeInfo[stat]
@@ -41,8 +45,20 @@ class pokemon:
         self.appendOrChangeStat("subtract", "health", round(damage, 0))
 
         if self.__pokeInfo["health"] <= 0:
+            pokemon.__pokePopulation -= 1
             self.__pokeInfo["health"] == 0
             print("{} has fainted!".format(self.getStat("name")))
+
+    @staticmethod
+    def getPopulation():
+        return pokemon.__pokePopulation
+
+    def getPopulationHealth(list):
+        totalHealth = 0
+        for currentPokemon in list.keys():
+            totalHealth += list[currentPokemon].getStat("health")
+
+        return totalHealth / pokemon.getPopulation()
 
 
 def pokeAttack(nameAttacker, nameAttacked, attack):
@@ -57,3 +73,5 @@ pokemons["charmeleon"] = pokemon("charmeleon", "fire", 60, {"headbutt": 10, "fla
 
 pokeAttack("pikachu", "charmeleon", list(pokemons["pikachu"].getStat("attacks").items())[0])
 pokeAttack("charmeleon", "pikachu", list(pokemons["charmeleon"].getStat("attacks").items())[1])
+
+print(pokemon.getPopulationHealth(pokemons))
